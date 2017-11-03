@@ -1,88 +1,122 @@
 # cctconvert #
 
-Converts cookiecutter v1 template to a v2 template.
+This utility saves a little bit of editing by converting a version 1 **Cookiecutter** template file to a version 2 template file.
 
-After that Cookiecutter v2.x is required to use the v2 template.
+After that **Cookiecutter** v2.x is required to use the version 2 template.
 
+While the **Cookiecutter** v2 pull request is being considered, you can find **Cookiecutter** v2.0.0 which is a fork of **Cookiecutter** v1.6.0 at [Cookiecutter v2.0.0 fork](https://github.com/eruber/cookiecutter/tree/new-2.0-context).
+
+For some additional background on the feature set support by the [Cookiecutter v2.0.0 fork](https://github.com/eruber/cookiecutter/tree/new-2.0-context) see the implementation's development & test notes at [Cookiecutter v2 Dev & Test Notes](https://github.com/eruber/cookiecutter-v2-fork-docs).
 
 # Installation #
 
 From PyPI:
 
-   $ pip install cctconvert
+	pip install cctconvert
 
 From source if current directory is the root of the project:
 
-    $ pip install .
+    pip install .
 
 
 # Usage #
 
 Read the User Manual:
 
-    $ cctconvert --help
-                                            
-# Manual Conversion # 
+    cctconvert --help
 
-Is best illustrated with an example, beginning with a simple version 1 Cookiecutter template::
+## Usage Example ##
+
+If there is a version 1 **cookiecutter.json** file in current directory, just do:
+
+	cctconvert
+
+and the output should look very similar to this:
+
+	cctconvert 1.0.0 Fri Nov  3 09:52:16 2017
+	Renaming input file to 'cookiecutter.json.v1.bkup'...
+	Writing out version 2 cookiecutter template to file 'cookiecutter.json'
+
+So your current directory will now contain two **Cookiecutter** template files -- a backup of the original version 1 **Cookiecutter** template
+file now named **cookiecutter.json.v1.bkup** and the newly generated version 2 **Cookiecutter** template file named **cookiecutter.json**.
+
+However, if you don't like the idea of backing up the version 1 template file by renaming it, then you can use the **--output** option to change the name of the generated version 2 template file like this:
+
+	cctconvert --output cookiecutter-v2.json
+
+and the output should look something like this:
+
+	cctconvert 1.0.0 Fri Nov  3 10:10:11 2017
+	Writing out version 2 cookiecutter template to file 'cookiecutter-v2.json'
+  
+So now your current directory contains two **Cookiecutter** template files -- the original version 1 **Cookiecutter** template file still named  **cookiecutter.json** and the newly generated version 2 **Cookiecutter** template file named **cookiecutter-v2.json**.
+
+                                            
+# Conversion Overview #
+
+Examining the details of a simple conversion gives you an idea what **cctconvert** is doing under the covers -- beginning with a simple version 1 **Cookiecutter** template file:
 	
 	{
-	    "full_name": "Raphael Pierzina",
-	    "github_username": "hackebrot",
-	    "project_name": "Kivy Project",
-	    "repo_name": "{{cookiecutter.project_name|lower}}",
-	    "orientation": ["all", "landscape", "portrait"]
+	  "full_name": "Rick Deckard",
+	  "email": "rd@tyrell.com",
+	  "github_username": "rd-tyrell",
+	  "project_name": "Voigt-Kampff Statistics for Greater Los Angeles",
+	  "project_short_description": "Do Andriods Dream of Electric Sheep?"
 	}
 
-The above template converted to version 2 would look like this::
+The above template converted to version 2 looks like this::
 	
 	{
-	    "name": "cookiecutter-kivy-project",
+	    "name": "cookiecutter-transformed",
 	    "cookiecutter_version": "2.0.0",
-	    "variables" : [
+	    "_inception": "Transformed by cctconvert 1.0.0 Fri Nov  3 10:18:15 2017",
+	    "variables": [
 	        {
 	            "name": "full_name",
-	            "default": "Raphael Pierzina",
+	            "default": "Rick Deckard"
+	        },
+	        {
+	            "name": "email",
+	            "default": "rd@tyrell.com"
 	        },
 	        {
 	            "name": "github_username",
-	            "default": "hackebrot",
+	            "default": "rd-tyrell"
 	        },
 	        {
 	            "name": "project_name",
-	            "default": "Kivy Project",
+	            "default": "Voigt-Kampff Statistics for Greater Los Angeles"
 	        },
 	        {
-	            "name": "repo_name",
-	            "default": "{{cookiecutter.project_name|lower}}",
-	        },
-	        {
-	            "name": "orientation",
-	            "default": "all",
-	            "choices": ["all", "landscape", "portrait"]
-	        },
+	            "name": "project_short_description",
+	            "default": "Do Andriods Dream of Electric Sheep?"
+	        }
 	    ]
 	}
 
+If you don't like the private **\_inception** variable in the header of the version 2 template, then you can specify the command line option **--no-incept** to suppress it (added in **cctconvert** v1.0.1).
+
 #  Deveopment & Test Env Setup #
 
-Change directory to the root of the project and do:
+Change directory to the root of the project, create a virtual environment, activate it, install dependencies, and install **cctconvert** in development mode:
 
-	pip install -r dev-requirements.txt
-	pip install -r test-requirements.txt
-	pip instal -e .
+	> python -m venv .cct-venv
+	>.cct-venv\Scripts\activate
+	(,cct-venv) pip install -r dev-requirements.txt
+	(,cct-venv) pip install -r test-requirements.txt
+	(,cct-venv) pip instal -e .
 
 To Run all the tests:
 
-	pytest
+	(,cct-venv) pytest
 
-You should see a coverage report that is similar to this (the number of tests, might have changed,
-but coverage should be at %100):
+You should see a coverage report that is similar to this (the number of tests might have changed since this README was written,
+but coverage should still be at %100):
 	
 	============================= test session starts =============================
-	platform win32 -- Python 3.6.2, pytest-3.2.3, py-1.4.34, pluggy-0.4.0 -- d:\devel\_python\__eru\___repos\cookiecutter-template-converter\.cct-venv\scripts\python.exe
+	platform win32 -- Python 3.6.2, pytest-3.2.3, py-1.4.34, pluggy-0.4.0 -- d:\devel\python\eru\repos\cookiecutter-template-converter\.cct-venv\scripts\python.exe
 	cachedir: .cache
-	rootdir: D:\Devel\_python\__eru\___repos\cookiecutter-template-converter, inifile: setup.cfg
+	rootdir: D:\Devel\python\eru\repos\cookiecutter-template-converter, inifile: setup.cfg
 	plugins: mock-1.6.3, datafiles-1.0, cov-2.5.1
 	collected 16 items
 	

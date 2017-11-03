@@ -277,6 +277,49 @@ def test_input_is_empty_json(datafiles, runner):
     assert len(jfout['variables']) == len([])
 
 
+@pytest.mark.datafiles(os.path.join(TEST_SUPPORT_DIR, 'input', 'empty.json'))
+def test_input_is_empty_json_with_no_incept_option(datafiles, runner):
+    """
+    Generate an v2 cookiecutter.json file from an empty json file.
+    """
+    # Make sure pytest-datafiles is working
+    inpath = str(datafiles)
+    assert len(os.listdir(inpath)) == 1
+
+    os.chdir(inpath)
+
+    cookiecutter = 'empty.json'
+    assert os.path.isfile(cookiecutter)
+
+    result = runner.invoke(cctconvert.main, [cookiecutter, '--no-incept'])
+
+    assert IDENT in result.output
+
+    assert result.exit_code == 0
+
+    # correct output message
+    assert cctconvert.VERSION in result.output
+    assert "Renaming input file to 'empty.json.v1.bkup" in result.output
+    assert "Writing out version 2 cookiecutter template to file 'empty.json'" in result.output      # noqa
+
+    infile_backed_up = 'empty.json.v1.bkup'
+    # created backup of original input file
+    assert os.path.isfile(infile_backed_up)
+
+    jfout = load_json_file(cookiecutter)
+    # {
+    #     "name": "empty-transformed",
+    #     "cookiecutter_version": "2.0.0",
+    #     "_inception": "Transformed by cctconvert 1.0.0 Wed Nov  1 21:56:23 2017",
+    #     "variables": []
+    # }
+    # Check v2 json file
+    assert jfout['name'] == 'empty-transformed'
+    assert jfout['cookiecutter_version'] == '2.0.0'
+    #assert jfout['_inception'].startswith("Transformed by ")
+    assert len(jfout['variables']) == len([])
+
+
 def test_version_option_z(runner):
     """
     Test passing -z and getting version IDENT back

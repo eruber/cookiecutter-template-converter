@@ -13,7 +13,11 @@ The only external dependency required is:
 
 For the User Manual:
 
-    python convert.py --help
+    python cctconvert.py --help
+
+or if its been installed:
+
+    cctconvert --help
 
 """
 import os
@@ -27,7 +31,9 @@ from collections import OrderedDict
 import click
 
 # ----------------------------------------------------------------------------
-VERSION = '1.0.0'  # Initial release
+# VERSION = '1.0.0'  # Initial release
+VERSION = '1.0.1'  # Added -no-incept option
+
 IDENT = 'cctconvert ' + VERSION
 
 V1_BACKUP_EXT = '.v1.bkup'
@@ -133,7 +139,7 @@ def resolve_output_filename(input_file_name, output_file_name):
 # ----------------------------------------------------------------------------
 
 
-def convert(cookiecutter, verbose, name, version, dryrun, output, clear):
+def convert(cookiecutter, verbose, name, version, dryrun, output, clear, no_incept):   # noqa
     """
     Converts cookiecutter (version 1) file to a version 2 file.
 
@@ -176,12 +182,19 @@ def convert(cookiecutter, verbose, name, version, dryrun, output, clear):
         name = os.path.splitext(os.path.basename(cookiecutter))[0]
         name = name + '-transformed'
 
-    ctx_v2 = OrderedDict([
-        ('name', name),
-        ('cookiecutter_version', '2.0.0'),
-        ('_inception', 'Transformed by ' + ident),
-        ('variables', []),
-    ])
+    if no_incept:
+        ctx_v2 = OrderedDict([
+            ('name', name),
+            ('cookiecutter_version', '2.0.0'),
+            ('variables', []),
+        ])
+    else:
+        ctx_v2 = OrderedDict([
+            ('name', name),
+            ('cookiecutter_version', '2.0.0'),
+            ('_inception', 'Transformed by ' + ident),
+            ('variables', []),
+        ])
 
     if verbose:
         click.echo("Cookiecutter input '{ccf}' context:".format(ccf=cookiecutter))  # noqa
@@ -244,7 +257,10 @@ def convert(cookiecutter, verbose, name, version, dryrun, output, clear):
 @click.option(
     '--clear', '-c', is_flag=True, default=False,
     help='Clear that cluttered terminal screen before running.')
-def main(cookiecutter, verbose, name, version, dryrun, output, clear):
+@click.option(
+    '--no-incept', '-i', is_flag=True, default=False,
+    help='Suppress writing the private _inception field to the version 2 template header')   # noqa
+def main(cookiecutter, verbose, name, version, dryrun, output, clear, no_incept):
     """\b
     Transform a version 1 COOKIECUTTER file into a version 2 file.
     Default COOKIECUTTER file is 'cookiecutter.json' in current directory.
@@ -263,7 +279,7 @@ def main(cookiecutter, verbose, name, version, dryrun, output, clear):
     input file, or the writing of the output file, an abort of the transform
     will occur and the user will be responsible for correcting the error.
     """
-    sys.exit(convert(cookiecutter, verbose, name, version, dryrun, output, clear))
+    sys.exit(convert(cookiecutter, verbose, name, version, dryrun, output, clear, no_incept))    # noqa
 
 
 # ----------------------------------------------------------------------------
