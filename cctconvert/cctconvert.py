@@ -260,7 +260,7 @@ def convert(cookiecutter, verbose, name, version, dryrun, output, clear, no_ince
 @click.option(
     '--no-incept', '-i', is_flag=True, default=False,
     help='Suppress writing the private _inception field to the version 2 template header')   # noqa
-def main(cookiecutter, verbose, name, version, dryrun, output, clear, no_incept):
+def main(cookiecutter, verbose, name, version, dryrun, output, clear, no_incept):   # noqa
     """\b
     Transform a version 1 COOKIECUTTER file into a version 2 file.
     Default COOKIECUTTER file is 'cookiecutter.json' in current directory.
