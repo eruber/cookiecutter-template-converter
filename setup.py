@@ -8,7 +8,7 @@ dependencies = ['click']
 
 setup(
     name='cctconvert',
-    version='1.0.0',
+    version='1.0.1',
     url='https://github.com/eruber/cookiecutter-template-convert',
     license='MIT',
     author='E.R. Uber',
@@ -21,7 +21,8 @@ setup(
     platforms='any',
     install_requires=dependencies,
     setup_requires=['pytest-runner', ],
-    tests_require=['pytest', 'pytest-cov', 'pytest-mock'],
+    tests_require=['pytest', 'pytest-cov', 'pytest-mock',
+                   'pytest-datafiles', 'tox'],
     entry_points={
         'console_scripts': [
             'cctconvert = cctconvert.cctconvert:main',
