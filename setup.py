@@ -49,5 +49,6 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries :: Python Modules',
+        'Topic :: Software Development :: Pre-processors',
     ]
 )
