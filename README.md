@@ -1,6 +1,6 @@
 # cctconvert #
 
-[![Travis](https://img.shields.io/travis/eruber/cookiecutter-template-converter.svg?style=flat-square)](https://www.travis-ci.org/eruber/cookiecuter-template-converter)
+[![Travis](https://img.shields.io/travis/eruber/cookiecutter-template-converter.svg?style=flat-square)](https://www.travis-ci.org/eruber/cookiecutter-template-converter)
 
 ![]()
 
