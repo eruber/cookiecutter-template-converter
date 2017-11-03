@@ -1,8 +1,8 @@
 # cctconvert - A Cookiecutter Template Converter#
 
-[![Travis](https://img.shields.io/travis/eruber/cookiecutter-template-converter.svg?style=flat-square)](https://www.travis-ci.org/eruber/cookiecutter-template-converter)
-[![Appveyor](https://img.shields.io/appveyor/ci/eruber/cookiecutter-template-converter.svg?style=flat-square)](https://ci.appveyor.com/project/eruber/cookiecutter-template-converter)
-
+[![Travis](https://img.shields.io/travis/eruber/cookiecutter-template-converter.svg?style=flat-square)](https://www.travis-ci.org/eruber/cookiecutter-template-converter "Travis Build Status")
+[![Appveyor](https://img.shields.io/appveyor/ci/eruber/cookiecutter-template-converter.svg?style=flat-square)](https://ci.appveyor.com/project/eruber/cookiecutter-template-converter "Appveyor Build Status")
+[![CodeCov](https://codecov.io/gh/eruber/cookiecutter-template-converter/coverage.svg?branch=master)](https://codecov.io/gh/eruber/cookiecutter-template-converter)
 
 This utility saves a little bit of editing by converting a version 1 **Cookiecutter** template file to a version 2 template file.
 
