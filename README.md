@@ -102,11 +102,10 @@ Change directory to the root of the project, create a virtual environment, activ
 
 	> python -m venv .cct-venv
 	>.cct-venv\Scripts\activate
-	(,cct-venv) pip install -r dev-requirements.txt
 	(,cct-venv) pip install -r test-requirements.txt
 	(,cct-venv) pip instal -e .
 
-To Run all the tests:
+To run all the tests:
 
 	(,cct-venv) pytest
 
@@ -147,3 +146,17 @@ but coverage should still be at %100):
 	
 	
 	========================== 16 passed in 0.13 seconds ==========================
+
+To run tox:
+
+	(,cct-venv) tox
+
+You should see an output summary that is comforting:
+
+	___________________________________ summary ___________________________________
+	  py33: commands succeeded                                                     
+	  py34: commands succeeded                                                     
+	  py35: commands succeeded                                                     
+	  py36: commands succeeded                                                     
+	  flake8: commands succeeded                                                   
+	  congratulations :)                                                           
