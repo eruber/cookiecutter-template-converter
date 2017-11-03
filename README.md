@@ -1,5 +1,10 @@
 # cctconvert #
 
+[![Travis](https://img.shields.io/travis/eruber/cookiecutter-template-converter.svg?style=flat-square)](https://www.travis-ci.org/eruber/cookiecuter-template-converter)
+
+![]()
+
+
 This utility saves a little bit of editing by converting a version 1 **Cookiecutter** template file to a version 2 template file.
 
 After that **Cookiecutter** v2.x is required to use the version 2 template.
