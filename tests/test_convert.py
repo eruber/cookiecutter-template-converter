@@ -85,7 +85,7 @@ def test_unable_to_write_output_error(mocker, datafiles, runner):
     os.chdir(inpath)
     assert inpath == os.getcwd()
 
-    result = runner.invoke(cctconvert.main, ['empty.json', '--output', 'v2.json'])  # default CLI args
+    result = runner.invoke(cctconvert.main, ['empty.json', '--output', 'v2.json'])  # noqa
 
     assert IDENT in result.output
 
@@ -114,7 +114,7 @@ def test_input_file_cannot_be_renamed_error(datafiles, runner):
 
     assert IDENT in result.output
 
-    msg = "ERROR: Input file 'empty.json' cannot be renamed to 'empty.json.v1.bkup' because that file already exists!!"
+    msg = "ERROR: Input file 'empty.json' cannot be renamed to 'empty.json.v1.bkup' because that file already exists!!"  # noqa
     assert msg in result.output
 
     assert result.exit_code == -3
@@ -135,7 +135,7 @@ def test_output_file_already_exists_error(datafiles, runner):
     os.chdir(inpath)
     assert inpath == os.getcwd()
 
-    result = runner.invoke(cctconvert.main, ['empty.json', '--output', 'v2.json'])  # default CLI args
+    result = runner.invoke(cctconvert.main, ['empty.json', '--output', 'v2.json'])  # noqa
 
     assert IDENT in result.output
 
@@ -158,7 +158,7 @@ def test_no_specified_input_file_error(datafiles, runner):
     os.chdir(inpath)
     assert inpath == os.getcwd()
 
-    result = runner.invoke(cctconvert.main, ['whatever.json'])  # default CLI args
+    result = runner.invoke(cctconvert.main, ['whatever.json'])
 
     assert IDENT in result.output
 
@@ -200,7 +200,7 @@ def test_input_file_already_v2_error(datafiles, runner):
     os.chdir(inpath)
     assert inpath == os.getcwd()
 
-    result = runner.invoke(cctconvert.main, ['minimal-v2.json'])  # default CLI args
+    result = runner.invoke(cctconvert.main, ['minimal-v2.json'])
 
     assert IDENT in result.output
 
@@ -221,15 +221,16 @@ def test_input_file_already_v2_error_with_verbose(datafiles, runner):
     os.chdir(inpath)
     assert inpath == os.getcwd()
 
-    result = runner.invoke(cctconvert.main, ['minimal-v2.json', '--verbose'])  # default CLI args
+    result = runner.invoke(cctconvert.main, ['minimal-v2.json', '--verbose'])
 
     assert IDENT in result.output
 
     msg = "Cookiecutter file 'minimal-v2.json' is already a version 2 template!!"   # noqa
     assert msg in result.output
-    assert "('name', 'empty-transformed')" in result.output
-    assert "('cookiecutter_version', '2.0.0')" in result.output
-    assert "('variables', " in result.output
+    assert 'empty-transformed' in result.output
+    assert 'cookiecutter_version' in result.output
+    assert '2.0.0' in result.output
+    assert 'variables' in result.output
 
     assert result.exit_code == -6
 
@@ -264,12 +265,7 @@ def test_input_is_empty_json(datafiles, runner):
     assert os.path.isfile(infile_backed_up)
 
     jfout = load_json_file(cookiecutter)
-    # {
-    #     "name": "empty-transformed",
-    #     "cookiecutter_version": "2.0.0",
-    #     "_inception": "Transformed by cctconvert 1.0.0 Wed Nov  1 21:56:23 2017",
-    #     "variables": []
-    # }
+
     # Check v2 json file
     assert jfout['name'] == 'empty-transformed'
     assert jfout['cookiecutter_version'] == '2.0.0'
@@ -307,16 +303,12 @@ def test_input_is_empty_json_with_no_incept_option(datafiles, runner):
     assert os.path.isfile(infile_backed_up)
 
     jfout = load_json_file(cookiecutter)
-    # {
-    #     "name": "empty-transformed",
-    #     "cookiecutter_version": "2.0.0",
-    #     "_inception": "Transformed by cctconvert 1.0.0 Wed Nov  1 21:56:23 2017",
-    #     "variables": []
-    # }
+
     # Check v2 json file
     assert jfout['name'] == 'empty-transformed'
     assert jfout['cookiecutter_version'] == '2.0.0'
-    #assert jfout['_inception'].startswith("Transformed by ")
+    # The --no-incept option suppresses the _inception field, so do not check
+    # assert jfout['_inception'].startswith("Transformed by ")
     assert len(jfout['variables']) == len([])
 
 
@@ -378,7 +370,7 @@ def test_dryrun_option(datafiles, runner):
     assert "Cookiecutter input 'empty.json' context:" in result.output
     assert "{}" in result.output
     assert "Cookiecutter version 2 context:" in result.output
-    assert "('name', 'empty-transformed')" in result.output
+    assert 'empty-transformed' in result.output
     assert "Dry-run: No v2 output file produced." in result.output
 
 
@@ -507,7 +499,7 @@ def test_full_processing_default_input_file_verbose_option(datafiles, runner):
     assert 'github_username : rd-tyrell' in result.output
     assert 'project_name : Voigt-Kampff Statistics for Greater Los Angeles' in result.output   # noqa
     assert 'project_slug : "{{ cookiecutter.project_name.lower().replace(\' \', \'_\').replace(\'-\', \'_\') }}" in result.output'    # noqa
-    assert 'project_short_description : Do Andriods Dream of Electric Sheep?' in result.output
+    assert 'project_short_description : Do Andriods Dream of Electric Sheep?' in result.output     # noqa
     assert '_private_key : 7777' in result.output
     assert 'version : 0.1.0' in result.output
     assert 'deploy_to_read_the_docs : y' in result.output
@@ -622,7 +614,7 @@ def test_full_processing_with_name_option_and_output_option(datafiles, runner):
     assert os.path.isfile('cookiecutter.json')
 
     result = runner.invoke(cctconvert.main, ['--name', 'Sebastian-Template',
-                                             '--output', 'cookiecutter-V2.json'
+                                             '--output', 'cookiecutter-V2.json'     # noqa
                                              ])
     assert result.exit_code == 0
 
