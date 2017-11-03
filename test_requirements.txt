@@ -1,4 +1,6 @@
+-r dev_requirements.txt
 pytest
 pytest-cov
 pytest-mock
 pytest-datafiles
+tox
