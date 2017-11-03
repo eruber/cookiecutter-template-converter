@@ -1,0 +1,29 @@
+{
+  "full_name": "Rick Deckard",
+  "email": "rd@tyrell.com",
+  "github_username": "rd-tyrell",
+  "project_name": "Voigt-Kampff Statistics for Greater Los Angeles",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "Do Andriods Dream of Electric Sheep?",
+  "_private_key": "7777",
+  "version": "0.1.0",
+  "deploy_to_read_the_docs": "y",
+  "license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
+  "file_types": {
+      "png": {
+          "name": "Portable Network Graphic",
+          "library": "libpng",
+          "apps": [
+              "GIMP"
+          ]
+      },
+      "bmp": {
+          "name": "Bitmap",
+          "library": "libbmp",
+          "apps": [
+              "Paint",
+              "GIMP"
+          ]
+      }
+  }
+}
