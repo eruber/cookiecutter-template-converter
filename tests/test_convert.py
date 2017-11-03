@@ -621,11 +621,11 @@ def test_full_processing_with_name_option_and_output_option(datafiles, runner):
     assert IDENT in result.output
     assert "Renaming input file to 'cookiecutter.json.v1.bkup'..." not in result.output   # noqa
     assert "Writing out version 2 cookiecutter template to file 'cookiecutter-V2.json'" in result.output   # noqa
-    assert os.path.isfile('cookiecutter.json')
-    assert os.path.isfile('cookiecutter-v2.json')
     assert len(os.listdir(inpath)) == 2
+    assert os.path.isfile('cookiecutter.json')
+    assert os.path.isfile('cookiecutter-V2.json')
 
-    jfout = load_json_file('cookiecutter-v2.json')
+    jfout = load_json_file('cookiecutter-V2.json')
 
     # Check v2 json file
     assert jfout['name'] == 'Sebastian-Template'
