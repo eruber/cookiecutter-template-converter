@@ -8,9 +8,10 @@ This utility saves a little bit of editing by converting a version 1 **Cookiecut
 
 After that **Cookiecutter** v2.x is required to use the version 2 template.
 
-While the **Cookiecutter** v2 pull request is being considered, you can find **Cookiecutter** v2.0.0 which is a fork of **Cookiecutter** v1.6.0 at [Cookiecutter v2.0.0 fork](https://github.com/eruber/cookiecutter/tree/new-2.0-context).
+While the **Cookiecutter** v2 pull request is being considered, you can find **Cookiecutter** v2.0.0 (which is a fork of **Cookiecutter** v1.6.0) at [Cookiecutter v2.0.0 fork](https://github.com/eruber/cookiecutter/tree/new-2.0-context).
 
-For some additional background on the feature set support by the [Cookiecutter v2.0.0 fork](https://github.com/eruber/cookiecutter/tree/new-2.0-context) see the implementation's development & test notes at [Cookiecutter v2 Dev & Test Notes](https://github.com/eruber/cookiecutter-v2-fork-docs).
+For some additional background on the technical details behind & the feature set supported by the [Cookiecutter v2.0.0 fork](https://github.com/eruber/cookiecutter/tree/new-2.0-context) see the implementation notes at [Cookiecutter v2 Dev 
+Notes](http://cookiecutter-v2-fork-docs.readthedocs.io/en/latest/).
 
 # Installation #
 
