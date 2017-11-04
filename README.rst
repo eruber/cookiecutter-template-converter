@@ -81,13 +81,14 @@ Read the User Manual::
 Usage Example
 =============
 
-If there is a version 1 **cookiecutter.json** file in current directory, just do::
+If there is a version 1 **cookiecutter.json** file in the current directory,
+**cctconvert** knows what to do::
 
    cctconvert
 
 and the output should look very similar to this::
 
-   cctconvert 1.0.0 Fri Nov  3 09:52:16 2017
+   cctconvert 1.0.1 Fri Nov  3 09:52:16 2017
    Renaming input file to 'cookiecutter.json.v1.bkup'...
    Writing out version 2 cookiecutter template to file 'cookiecutter.json'
 
@@ -104,7 +105,7 @@ of the generated version 2 template file like this::
 
 and the output should look something like this::
 
-   cctconvert 1.0.0 Fri Nov  3 10:10:11 2017
+   cctconvert 1.0.1 Fri Nov  3 10:10:11 2017
    Writing out version 2 cookiecutter template to file 'cookiecutter-v2.json'
 
 So again your current directory contains two **Cookiecutter** template
@@ -212,14 +213,14 @@ to suppress it (added in **cctconvert** v1.0.1).
 
 Development & Test Setup
 ========================
-If you have acquired the source code, you might what to run the unit tests.
+If you have acquired the source code, you might want to run the unit tests.
 
 Change directory to the root of the project, create a virtual environment,
 activate it, install dependencies, and install **cctconvert**
-in development mode -- on Windoze the steps are::
+in development mode -- on a Windows console the steps are::
 
    > python -m venv .cct-venv
-   >.cct-venv\Scripts\activate
+   > .cct-venv\Scripts\activate
    (.cct-venv) pip install -r test-requirements.txt
    (.cct-venv) pip instal -e .
 
@@ -227,9 +228,9 @@ To run all the tests::
 
    (.cct-venv) pytest
 
-You should see a coverage report that is similar to this one (the number of
-tests might have changed since this README was written, but coverage should
-still be at %100)::
+You should see a coverage report that is similar to the one shown below (the
+number of tests might have changed since this README was written, but coverage
+should still be at %100)::
 
    ============================= test session starts =============================
    platform win32 -- Python 3.6.2, pytest-3.2.3, py-1.4.34, pluggy-0.4.0 --
@@ -265,15 +266,15 @@ still be at %100)::
    TOTAL                        113      0   100%
 
 
-   ========================== 16 passed in 0.13 seconds ==========================
+   ========================== 16 passed in 0.13 seconds ======================
 
 To run tox::
 
    (.cct-venv) tox
 
-You should see an output summary that is comforting, something like this:
+You should see an output summary that is comforting, something like this::
 
-   ___________________________________ summary ___________________________________
+   ___________________________________ summary _______________________________
      py33: commands succeeded
      py34: commands succeeded
      py35: commands succeeded
