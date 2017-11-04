@@ -53,8 +53,8 @@ While the **Cookiecutter** v2 pull request is being considered, you can
 find **Cookiecutter** v2.0.0 (which is a fork of **Cookiecutter** v1.6.0) at
 `Cookiecutter v2 Fork`_.
 
-For additional background on the technical details behind & the feature set
-supported by the `Cookiecutter v2 Fork`_ see the implementation notes at
+For additional background on the technical details of the fork & the feature
+set supported by the `Cookiecutter v2 Fork`_, see the implementation notes at
 `Cookiecutter v2 Dev Notes`_.
 
 
